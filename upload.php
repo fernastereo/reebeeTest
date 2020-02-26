@@ -2,8 +2,12 @@
 session_start();
 require_once 'config.php';
 
-$fileUploaded = $argv[1];
+if (!isset($argv[1])) {
+  echo "A valid filename is required!";
+  return 0;
+}
 
+$fileUploaded = $argv[1];
 $fileExtension = explode(".", $fileUploaded);
 if ($fileExtension[1] == 'csv') {
   $handle = fopen($fileUploaded, "r");
@@ -52,6 +56,8 @@ if ($fileExtension[1] == 'csv') {
 
   fclose($handle);
   echo "Import finished!";
+}else{
+  echo "A valid csv file is required!";
 }
 
 function getCategory($categoryName){
