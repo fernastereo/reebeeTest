@@ -2,7 +2,7 @@
 session_start();
 require_once 'config.php';
 
-if (!is_numeric($argv[1])) {
+if (isset($argv[1]) && !is_numeric($argv[1])) {
   echo "The paremeter must be a number";
   return 0;
 }
@@ -22,6 +22,7 @@ $sqlFlyers = "select f.id, f.startdate, f.enddate, c.name as category, f.flyerpr
               $sqlFlyers .= " order by f.flyerpriority asc";
 
 $queryResult = $pdo->query($sqlFlyers);
+
 while ($row = $queryResult->fetch(PDO::FETCH_ASSOC)){
   echo $row['id'] . ' | ' . $row['startdate'] . ' | ' . $row['enddate'] . ' | ' . $row['category'] . ' | ' . $row['flyerpriority'] . ' | ' . $row['store'] . "\n";
 }

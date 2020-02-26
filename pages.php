@@ -2,7 +2,7 @@
 session_start();
 require_once 'config.php';
 
-if (!is_numeric($argv[1])) {
+if (isset($argv[1]) && !is_numeric($argv[1])) {
   echo "The paremeter must be a number";
   return 0;
 }
