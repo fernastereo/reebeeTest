@@ -17,15 +17,16 @@ if ($fileExtension[1] == 'csv') {
   $lastRecord = [];
   while ($data = fgetcsv($handle)) {
     $currentRecord = array_slice($data, 0, 5);
+    $startDate = $data[0];
+    $endDate = $data[1];
+    $storeName = $data[2];
+    $flyerPriority = $data[3];
+    $categoryName = $data[4];
+    $pageNumber = $data[5];
+    $fileName = $data[6];
+    
     if ($currentRecord != $lastRecord) {
-      //insertar la linea
-      $startDate = $data[0];
-      $endDate = $data[1];
-      $storeName = $data[2];
-      $flyerPriority = $data[3];
-      $categoryName = $data[4];
-      $pageNumber = $data[5];
-      $fileName = $data[6];
+      //insert the record
       $timestamp = date("Y-m-d H:i:s");
 
       $category_id = getCategory($categoryName);
